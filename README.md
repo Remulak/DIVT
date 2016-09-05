@@ -27,7 +27,7 @@ Future ideas:
 + Lots of error checking
 + Deal with / skip open files
 
-I'm sure there is much to be optimized - this is my first use of sqlite and first sizeable python project.  The code needs some cleanup / compacting and make it look more pythonish.  Constructive criticism and improvement suggestions are greatly appreciated.
+I'm sure there is much to be optimized - this is my first use of sqlite and first sizable python project.  The code needs some cleanup / compacting and make it look more pythonish.  Constructive criticism and improvement suggestions are greatly appreciated.
 
 Thanks!
 
