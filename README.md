@@ -4,7 +4,8 @@ Directory Integrity Verification Tool
 
 GitHub: https://github.com/Remulak/DIVT
 
-YouTube: https://youtu.be/FeZJY6LItKA
+YouTube (original): https://youtu.be/FeZJY6LItKA
+YouTube (latest):
 
 The DIVT program is used to verify the integrity of selected files in a directory.  I like having a command line tool, and many (most?) verification / hashing programs are gui based.  Ideally I want to use a compiled version to make a standalone tool since the systems I will be verifying typically don't have python installed (and I don't want to or can't install it on there).  I successfully used PyInstaller to make the executable for windows.  Other programs that can make stand alone packages are cx_Freeze, py2exe, and py2app (Mac OS X only)
 
@@ -16,25 +17,15 @@ What it does:
 + Determines if files that match the extension you are interested in have changed (hash), have been deleted, or if new files with that extension have been added
 + Uses python standard libs so it should be OS agnostic (only tested on Windows)
 
-Usage:
+<p>Usage:</p>
 
-usage: divt.py [-h] [-d DIR] [-ht HASHTYPE] [-f] [-t TYPE] [-r] [-u] database
+<p>usage: divt.py [-h] [-d DIR] [-ht HASHTYPE] [-f] [-t TYPE] [-r] [-u] database</p>
 
-Verify contents of a directory
+<p>Verify contents of a directory</p>
 
-positional arguments:
-  database              name of hash database to use
+<p>positional arguments:  database name of hash database to use</p>
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -d DIR, --dir DIR     directory to add
-  -ht HASHTYPE, --hashtype HASHTYPE
-                        hashing algorithm to use (defaults to SHA1)
-  -f, --force           force an overwrite of an existing database
-  -t TYPE, --type TYPE  filename types to add
-  -r, --recursive       turn on recursive adding of directories
-  -u, --update          update database to include changes to directories and
-                        hashes
+<p>optional arguments:  -h, --help show this help message and exit  -d DIR, --dir DIR directory to add  -ht HASHTYPE, --hashtype HASHTYPE  hashing algorithm to use (defaults to SHA1)  -f, --force force an overwrite of an existing database  -t TYPE, --type TYPE filename types to add  -r, --recursive turn on recursive adding of directories  -u, --update update database to include changes to directories and  hashes</p>
 
 Latest improvements:
 Extensive code refactoring
