@@ -520,9 +520,9 @@ def main():
             exit(error_val)
         else:
             if args.update:
-                update_database(args.database, files_dict)
+                error_val=update_database(args.database, files_dict)
             else:
-                display_verification_results(files_dict)
+                error_val=display_verification_results(files_dict)
 
     exit(error_val)
 
