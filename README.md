@@ -60,10 +60,10 @@ optional arguments:
 + Speed / optimizing (putting everything into a sqlite database and using strings for keys is far from optimal... but it's usable now.  Possibly doing all in memory then writing the database once created...
 + Display filenames found with the same hash
 + Send hash values to VirusTotal
-+ Tools to selectively edit the database instead of forcing a complete rebuild
++ Add windows signtool checking
++ More tools to selectively edit the database instead of forcing a complete rebuild
 + Tools to add to the database after initial creation
-+ Throw error codes
-+ Lots of error checking
++ Lots more error checking
 + Deal with / skip open files
 
 Constructive criticism and improvement suggestions are greatly appreciated.
