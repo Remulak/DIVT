@@ -1,7 +1,7 @@
 # Directory Integrity Verification Tool (DIVT)
 # Rod Rickenbach
 # Intial: 9/4/16
-# Revised: 11/5/16
+# Revised: 11/6/16
 # 
 # DIVT is a tool designed to monitor directory content changes. 
 # This includes changes to file hashes, files added and files deleted.
