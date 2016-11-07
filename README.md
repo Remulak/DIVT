@@ -5,7 +5,7 @@ Directory Integrity Verification Tool
 GitHub: https://github.com/Remulak/DIVT
 
 YouTube (original): https://youtu.be/FeZJY6LItKA
-YouTube (latest):
+YouTube (latest): https://youtu.be/BxcekLjWN6Y
 
 The DIVT program is used to verify the integrity of selected files in a directory.  I like having a command line tool, and many (most?) verification / hashing programs are gui based.  Ideally I want to use a compiled version to make a standalone tool since the systems I will be verifying typically don't have python installed (and I don't want to or can't install it on there).  I successfully used PyInstaller to make the executable for windows.  Other programs that can make stand alone packages are cx_Freeze, py2exe, and py2app (Mac OS X only)
 
