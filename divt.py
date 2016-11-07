@@ -500,14 +500,16 @@ def main():
         
     # If no hash algorithm is specified, default to sha1
     if args.hashtype == None:
-        args.hashtype = 'sha1'
+        hashtype = 'sha1'
+    else:
+        hashtype=args.hashtype.lower()
 
     # Define and clear out the error value that main will exit with
     error_val = 0
 
     # Check to see if we are adding directories to a database
     if args.dir:
-        error_val=add_to_database(args.hashtype,args.type,args.dir,args.recursive,args.database,args.force)
+        error_val=add_to_database(hashtype,args.type,args.dir,args.recursive,args.database,args.force)
 
     # If we are not adding files, we are verifying or updating database
     else:
