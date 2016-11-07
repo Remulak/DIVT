@@ -1,7 +1,7 @@
 # Directory Integrity Verification Tool (DIVT)
 # Rod Rickenbach
 # Intial: 9/4/16
-# Revised: 11/6/16
+# Revised: 11/7/16
 # 
 # DIVT is a tool designed to monitor directory content changes. 
 # This includes changes to file hashes, files added and files deleted.
@@ -467,7 +467,7 @@ def display_verification_results(files_dict):
             print ('New file found: {}'.format(key))
             print ('\t Hash value: {}\n\n'.format(files_dict[key][1]))
 
-    print ('{} files hashed\n'.format(len(files_dict)))
+    print ('{} files processed\n'.format(len(files_dict)))
 
     if problems_found:
         print ('{} problems found.\n\n'.format(problems_found))
