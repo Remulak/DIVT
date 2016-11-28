@@ -20,11 +20,8 @@ I was inspired by a Windows tool that I have been using called FCIV, the File Ch
 ##Usage:
 
 usage: divt no VT api Key.py [-h] [-d DIRECTORY] [-ht HASHTYPE] [-f] [-t TYPE]
-
                              [-exe] [-r] [-u] [-vt] [-st] [-dup] [-lbp]
-                             
                              [-sbp SUBSTITUTEBASEPATH] [-l] [-lh] [-lc]
-                             
                              database
 
 
