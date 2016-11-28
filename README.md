@@ -51,12 +51,10 @@ optional arguments:
   
   -r, --recursive       turn on recursive adding of directories
   
-  -u, --update          update database to include changes to directories and
-  
+  -u, --update          update database to include changes to directories and 
                         hashes
                         
   -vt, --virustotal     run new file hashes and hash mismatches through Virus
-  
                         Total
                         
   -st, --signtool       Check windows verification signature chain
@@ -66,7 +64,6 @@ optional arguments:
   -lbp, --listbasepath  Display the base path of the database entries
   
   -sbp SUBSTITUTEBASEPATH, --substitutebasepath SUBSTITUTEBASEPATH
-  
                         New base path to use for verification
                         
   -l, --list            List all contents of the database
@@ -74,7 +71,6 @@ optional arguments:
   -lh, --listhashes     List all file hashes in the database
   
   -lc, --listcerts      List all signtool generated certificate chains in the
-  
                         database
                         
 
