@@ -791,7 +791,7 @@ def list_database(verification_database,print_hashes,print_certificates):
         print ('#')
         print ('# Base path: {}'.format(basepath))
         print ('# Recursion: {}'.format(print_recursion))
-        print ('# Hash Type: {}'.format(print_use_signtool))
+        print ('# Hash Type: {}'.format(hash_type))
         print ('# Signtool:  {}'.format(print_use_signtool))
         print ('########################################################################\n')
 
