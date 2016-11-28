@@ -958,7 +958,7 @@ def main():
     
     parser.add_argument('-dup', '--duplicates', action='store_true', help = 'List all files with duplicate hashes in the database')
     parser.add_argument('-lbp', '--listbasepath', action='store_true', help = 'Display the base path of the database entries')
-    parser.add_argument('-rbp', '--replacebasepath', help = 'New base path to use for verification')
+    parser.add_argument('-sbp', '--substitutebasepath', help = 'New base path to use for verification')
     parser.add_argument('-l', '--list', action='store_true', help = 'List all contents of the database')
     parser.add_argument('-lh', '--listhashes', action='store_true', help = 'List all file hashes in the database')
     parser.add_argument('-lc', '--listcerts', action='store_true', help = 'List all signtool generated certificate chains in the database')
@@ -1041,7 +1041,7 @@ def main():
         files_dict = {}
         # Call verification function which puts all info we find from the 
         # verification process into files_dict
-        error_val=verify_against_database(args.database, args.replacebasepath, files_dict)
+        error_val=verify_against_database(args.database, args.substitutebasepath, files_dict)
         if error_val:
             _exit(error_val)
         else:
