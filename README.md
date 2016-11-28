@@ -75,19 +75,18 @@ optional arguments:
                         
 
 ##Latest improvements:
-* Extensive code refactoring
-* Now usable as a library
-* Returns error codes to allow for useful integration in scripts
-* -ht option to change hash algorithm (md5/sha1/whatever is allowed by hashlib)
-* -f force overwrite of an existing database
-* -u update a database (fix any problems with missing files/new files/files with changed hashes
+* -exe option automatically selects executable file extensions on Windows and Mac OS
+* -st option uses signtool on Microsoft Windows to add certificate chains to the database
+* -vt option will send the hash of new files or files with hash or certicificate changes to Virus Total to see if it is in their database
+* -dup lists all files with duplicate hashes in the database
+* -lbp lists the base path used for the database (root directory used to create the database)
+* -sbp allows you to subsititute a new base path for that listed by -lbp
+* list the database contents by hash values, certificates, or all
+
 
 ##Future ideas:
 
 + Speed / optimizing (putting everything into a sqlite database and using strings for keys is far from optimal... but it's usable now.  Possibly doing all in memory then writing the database once created...
-+ Display filenames found with the same hash
-+ Send hash values to VirusTotal
-+ Add windows signtool checking
 + More tools to selectively edit the database instead of forcing a complete rebuild
 + Tools to add to the database after initial creation
 + Lots more error checking
