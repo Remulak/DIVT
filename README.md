@@ -20,38 +20,68 @@ I was inspired by a Windows tool that I have been using called FCIV, the File Ch
 ##Usage:
 
 usage: divt no VT api Key.py [-h] [-d DIRECTORY] [-ht HASHTYPE] [-f] [-t TYPE]
+
                              [-exe] [-r] [-u] [-vt] [-st] [-dup] [-lbp]
+                             
                              [-sbp SUBSTITUTEBASEPATH] [-l] [-lh] [-lc]
+                             
                              database
+
 
 Verify contents of a directory
 
+
 positional arguments:
+
   database              name of hash database to use
 
+
 optional arguments:
+
   -h, --help            show this help message and exit
+  
   -d DIRECTORY, --directory DIRECTORY
+  
                         directory to add
+                        
   -ht HASHTYPE, --hashtype HASHTYPE
+  
                         hashing algorithm to use (defaults to SHA1)
+                        
   -f, --force           force an overwrite of an existing database
+  
   -t TYPE, --type TYPE  filename types to add
+  
   -exe, --executables   Select executable files (Mac OS or Windows only)
+  
   -r, --recursive       turn on recursive adding of directories
+  
   -u, --update          update database to include changes to directories and
+  
                         hashes
+                        
   -vt, --virustotal     run new file hashes and hash mismatches through Virus
+  
                         Total
+                        
   -st, --signtool       Check windows verification signature chain
+  
   -dup, --duplicates    List all files with duplicate hashes in the database
+  
   -lbp, --listbasepath  Display the base path of the database entries
+  
   -sbp SUBSTITUTEBASEPATH, --substitutebasepath SUBSTITUTEBASEPATH
+  
                         New base path to use for verification
+                        
   -l, --list            List all contents of the database
+  
   -lh, --listhashes     List all file hashes in the database
+  
   -lc, --listcerts      List all signtool generated certificate chains in the
+  
                         database
+                        
 
 ##Latest improvements:
 * Extensive code refactoring
