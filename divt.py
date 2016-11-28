@@ -2,7 +2,7 @@
 # Rod Rickenbach
 # Intial: 9/4/16
 # Revised: 11/7/16
-# Revised: 11/26/16
+# Revised: 11/27/16
 # 
 # DIVT is a tool designed to monitor directory content changes. 
 # This includes changes to file hashes, files added and files deleted.
@@ -77,7 +77,7 @@ def print_VT_hash_check(hash_type, hash_value):
     # Enter an API key for Virus Total below if you want to use the service to 
     # optionally examine hash mismatches
 
-    VT_API_key = 'd21730e33b1896f4c4a0c13ae03c3b403900ef27df518b509901fc2752655020'
+    VT_API_key = 'ENTER VIRUS TOTAL API KEY HERE'
 
     # Time (in seconds) to sleep between queries.  For public API keys, this can
     # be no less than 15 seconds.  The public API actually 4 queries per minute, 
@@ -728,7 +728,7 @@ def list_duplicates(verification_database):
 # List all files and associated hashes in the verification database
 ###############################################################################
 
-def list_database(verification_database):
+def list_database(verification_database,print_hashes,print_certificates):
 
     #Check to ensure db exists
     if os.path.isfile(verification_database):
@@ -739,25 +739,96 @@ def list_database(verification_database):
         print ('Database file "{}"" does not exist!'.format(verification_database))
         return(1)
     
+    # Get information about the database
+    cur.execute("SELECT * from directories")
+    
+    # This value is stored for every directory entry now, so we just grab the first one as all
+    # must be the same
+
+    row = cur.fetchone()
+
+    # get the root directory, aka basepath
+    basepath = row[0]
+
+
+    # Get the hash type
+    hash_type = row[1]
+
+    # Determine if this is a recursive search 1=yes, 0=no
+    recursion = row[2]
+    
+    # Determine if the database uses signtool verification 1=yes, 0=no
+    use_signtool = row[3]
+
+    # Make stuff pretty for printing
+    if recursion:
+        print_recursion = 'On'
+    else:
+        print_recursion = 'Off'
+
+    if use_signtool:
+        print_use_signtool = 'On'
+    else:
+        print_use_signtool = 'Off'
+
     cur.execute("SELECT * FROM files")
 
     file_rows = cur.fetchall()
 
-    # as long as we found at least one, loop to display all
-    for file_row in file_rows:
-        
-        # Parse each file _row for the hash and number of duplicates 
-        stored_filename = file_row[0]
-        stored_hash = file_row[1]
-        stored_directory = file_row[2]
-        
-        # Construct and print the full filename
-        full_stored_name = os.path.join(stored_directory,stored_filename)
-        print ('{0},{1}'.format(full_stored_name,stored_hash))
-    
     # Done reading from the db
     con.close() 
+
+    number_of_files=len(file_rows)
+
+    # Only display this header if the whole database is dumped.
+    # Otherwise, leave off the information as the output may be
+    # piped into another program...
+
+    if print_hashes and print_certificates:
+        print ('########################################################################')
+        print ('# Summary of database {}'.format(verification_database))
+        print ('# Total Number of Files: {}'.format(number_of_files))
+        print ('#')
+        print ('# Base path: {}'.format(basepath))
+        print ('# Recursion: {}'.format(print_recursion))
+        print ('# Hash Type: {}'.format(print_use_signtool))
+        print ('# Signtool:  {}'.format(print_use_signtool))
+        print ('########################################################################\n')
+
+    if print_hashes:
+
+        # as long as we found at least one, loop to display all
+        # Need to refactor this...
+        for file_row in file_rows:
+            
+            # Parse each file _row for the hash and number of duplicates 
+            file_name = file_row[0]
+            hash_value = file_row[1]
+            directory = file_row[2]
+            
+            # Construct the full filename
+            full_stored_name = os.path.join(directory,file_name)
+
+            print ('{0},{1},{2}'.format(full_stored_name,hash_type,hash_value))
     
+    
+    if print_certificates and use_signtool:
+
+        # as long as we found at least one, loop to display all
+        # Need to refactor this with above
+        for file_row in file_rows:
+            
+            # Parse each file _row for the hash and number of duplicates 
+            file_name = file_row[0]
+            directory = file_row[2]
+            signtool_output = file_row[4]
+
+            # Construct the full filename
+            full_stored_name = os.path.join(directory,file_name)
+
+            print ('{}:\n'.format(full_stored_name))
+            print ('{}\n\n'.format(signtool_output))
+
     return(0)
 
 
@@ -888,7 +959,9 @@ def main():
     parser.add_argument('-dup', '--duplicates', action='store_true', help = 'List all files with duplicate hashes in the database')
     parser.add_argument('-lbp', '--listbasepath', action='store_true', help = 'Display the base path of the database entries')
     parser.add_argument('-rbp', '--replacebasepath', help = 'New base path to use for verification')
-    parser.add_argument('-l', '--list', action='store_true', help = 'List all files and their hashes in the database')
+    parser.add_argument('-l', '--list', action='store_true', help = 'List all contents of the database')
+    parser.add_argument('-lh', '--listhashes', action='store_true', help = 'List all file hashes in the database')
+    parser.add_argument('-lc', '--listcerts', action='store_true', help = 'List all signtool generated certificate chains in the database')
     parser.add_argument('database', help='name of hash database to use')
     
     args = parser.parse_args()
@@ -949,7 +1022,15 @@ def main():
 
     # otherwise check to see if we are listing the database contents
     elif args.list:
-        error_val=list_database(args.database)
+        error_val=list_database(args.database,True,True)
+    
+    # otherwise check to see if we are listing the database contents
+    elif args.listhashes:
+        error_val=list_database(args.database,True,False)
+
+    # otherwise check to see if we are listing the database contents
+    elif args.listcerts:
+        error_val=list_database(args.database,False,True)
 
     elif args.listbasepath:
         error_val=list_base_path(args.database)
