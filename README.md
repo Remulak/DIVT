@@ -87,8 +87,8 @@ optional arguments:
 ##Future ideas:
 
 + Speed / optimizing (putting everything into a sqlite database and using strings for keys is far from optimal... but it's usable now.  Possibly doing all in memory then writing the database once created...
-+ More tools to selectively edit the database instead of forcing a complete rebuild
-+ Tools to add to the database after initial creation
++ More tools to selectively edit or add to the database
++ Add a flag to a file/directory to skip checking?
 + Lots more error checking
 + Deal with / skip open files
 
