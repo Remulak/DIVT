@@ -38,11 +38,9 @@ optional arguments:
   -h, --help            show this help message and exit
   
   -d DIRECTORY, --directory DIRECTORY
-  
                         directory to add
                         
   -ht HASHTYPE, --hashtype HASHTYPE
-  
                         hashing algorithm to use (defaults to SHA1)
                         
   -f, --force           force an overwrite of an existing database
